@@ -15,7 +15,11 @@ class NewsController extends Controller
 
     public function show($id){
         $news = News::find($id);
-
-        return new RequestResource(true, "News by id", $news);
+        if($news != null){
+            return new RequestResource(true, "News by id", $news);
+        }else{
+            return new RequestResource(false, "Not found", null);
+        }
+        
     }
 }
